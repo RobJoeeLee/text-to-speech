@@ -8,6 +8,8 @@ playButton.addEventListener("click" , () => {
     playText(textInput.value)
 })
 
+pauseButton.addEventListener("click" , pauseText)
+
 function playText(text) {
     const utterance = new SpeechSynthesisUtterance(text)
     utterance.rate = speedInput.value
