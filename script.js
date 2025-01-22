@@ -11,6 +11,9 @@ playButton.addEventListener("click" , () => {
 pauseButton.addEventListener("click" , pauseText)
 
 function playText(text) {
+    if (speechSynthesis.paused && speechSynthesis.speaking) {
+        return speechSynthesis.resume()
+    }
     const utterance = new SpeechSynthesisUtterance(text)
     utterance.rate = speedInput.value
     utterance.addEventListener("end" , () => {
@@ -18,4 +21,8 @@ function playText(text) {
     })
     textInput.disabled = true
     speechSynthesis.speak(utterance)
+}
+
+function pauseText() {
+    if (speechSynthesis.speaking) speechSynthesis.pause()
 }
