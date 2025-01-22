@@ -11,5 +11,9 @@ playButton.addEventListener("click" , () => {
 function playText(text) {
     const utterance = new SpeechSynthesisUtterance(text)
     utterance.rate = speedInput.value
+    utterance.addEventListener("end" , () => {
+        textInput.disabled = false
+    })
+    textInput.disabled = true
     speechSynthesis.speak(utterance)
 }
