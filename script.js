@@ -7,3 +7,9 @@ const stopButton = document.getElementById("stop-button")
 playButton.addEventListener("click" , () => {
     playText(textInput.value)
 })
+
+function playText(text) {
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.rate = speedInput.value
+    speechSynthesis.speak(utterance)
+}
