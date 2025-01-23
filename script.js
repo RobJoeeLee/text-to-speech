@@ -3,6 +3,7 @@ const speedInput = document.getElementById("speed")
 const playButton = document.getElementById("play-button")
 const pauseButton = document.getElementById("pause-button")
 const stopButton = document.getElementById("stop-button")
+let currentCharacter
 
 playButton.addEventListener("click" , () => {
     playText(textInput.value)
@@ -20,6 +21,9 @@ function playText(text) {
     utterance.rate = speedInput.value || 1
     utterance.addEventListener("end" , () => {
         textInput.disabled = false
+    })
+    utterance.addEventListener("boundary" , e => {
+        currentCharacter = e.charIndex
     })
     textInput.disabled = true
     speechSynthesis.speak(utterance)
