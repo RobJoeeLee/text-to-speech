@@ -17,7 +17,7 @@ function playText(text) {
         return speechSynthesis.resume()
     }
     const utterance = new SpeechSynthesisUtterance(text)
-    utterance.rate = speedInput.value
+    utterance.rate = speedInput.value || 1
     utterance.addEventListener("end" , () => {
         textInput.disabled = false
     })
