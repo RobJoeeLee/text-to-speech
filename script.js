@@ -13,11 +13,7 @@ pauseButton.addEventListener("click" , pauseText)
 
 stopButton.addEventListener("click" , stopText)
 
-function playText(text) {
-    if (speechSynthesis.paused && speechSynthesis.speaking) {
-        return speechSynthesis.resume()
-    }
-    const utterance = new SpeechSynthesisUtterance(text)
+const utterance = new SpeechSynthesisUtterance()
     utterance.rate = speedInput.value || 1
     utterance.addEventListener("end" , () => {
         textInput.disabled = false
@@ -25,6 +21,13 @@ function playText(text) {
     utterance.addEventListener("boundary" , e => {
         currentCharacter = e.charIndex
     })
+
+function playText(text) {
+    if (speechSynthesis.paused && speechSynthesis.speaking) {
+        return speechSynthesis.resume()
+    }
+    utterance.text = text
+    utterance.rate = speedInput.value || 1
     textInput.disabled = true
     speechSynthesis.speak(utterance)
 }
