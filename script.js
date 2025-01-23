@@ -13,6 +13,11 @@ pauseButton.addEventListener("click" , pauseText)
 
 stopButton.addEventListener("click" , stopText)
 
+speedInput.addEventListener("input" , () => {
+    stopText()
+    playText(utterance.text.substring(currentCharacter))
+})
+
 const utterance = new SpeechSynthesisUtterance()
     utterance.rate = speedInput.value || 1
     utterance.addEventListener("end" , () => {
